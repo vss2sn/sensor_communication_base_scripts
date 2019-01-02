@@ -47,6 +47,22 @@ void set_display_colour(Colour colour){
 	}
 }
 
+std::string exec_system_cmd(const char* cmd){
+	std::array<char, 128> buffer;
+	std::string result;
+	std::unique_ptr<FILE, decltype(&pclose) > pipe(popen(cmd, "r"), pclose);
+	if(!pipe){
+		std::cout << "Unable to run system call" + std::string(cmd);
+		return "";
+	}
+	else{
+		while(fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
+			result += buffer.data();
+		return result;
+	}
+}
+
+
 #ifdef BUILD_INDIVIDUAL
 int main(){
 	//Example use:

@@ -3,6 +3,11 @@
 #include <ctime>
 #include <iostream>
 #include <sstream>
+#include <array>
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <memory>
 
 #define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
 
