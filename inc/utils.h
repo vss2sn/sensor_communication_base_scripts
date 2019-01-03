@@ -1,13 +1,6 @@
-#pragma once
+#include "main.h"
 
-#include <ctime>
-#include <iostream>
-#include <sstream>
-#include <array>
-#include <iostream>
-#include <algorithm>
-#include <iterator>
-#include <memory>
+#pragma once
 
 #define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
 
@@ -31,61 +24,7 @@ public:
 		return *this;
 	}
 
-	virtual ~LogDetailed(){
-		switch (_log_level){
-		case LogLevel::Debug:
-			set_display_colour(Colour::GREEN);
-			break;
-		case LogLevel::Info:
-			set_display_colour(Colour::BLUE);
-			break;
-		case LogLevel::Warn:
-			set_display_colour(Colour::YELLOW);
-			break;
-		case LogLevel::Err:
-			set_display_colour(Colour::RED);
-			break;
-		case LogLevel::Status:
-			set_display_colour(Colour::WHITE);
-			break;
-		}
-
-		if (_log_level == LogLevel::Status){
-			std::cout << _s.str();
-			set_display_colour(Colour::RESET);
-			std::cout << std:: endl;
-		}
-		else{
-			time_t rawtime;
-			time(&rawtime);
-			struct tm *timeinfo = localtime(&rawtime);
-			char time_buffer[10]{};
-			strftime(time_buffer, sizeof(time_buffer), "%I:%M:%S", timeinfo);
-			std::cout << "[" << time_buffer;
-
-			switch(_log_level){
-			case LogLevel::Debug:
-				std::cout << "|Debug ] ";
-				break;
-			case LogLevel::Info:
-				std::cout << "|Info ] ";
-				break;
-			case LogLevel::Warn:
-				std::cout << "|Warn ] ";
-				break;
-			case LogLevel::Err:
-				std::cout << "|Error ] ";
-				break;
-			case LogLevel::Status:
-				std::cout << "|Status ] ";
-				break;
-			}
-			set_display_colour(Colour::RESET);
-			std::cout << _s.str();
-			std::cout << " |" << _caller_filename << ":" << _caller_filenumber << "|";
-			std::cout << std::endl;
-		}
-	}
+	virtual ~LogDetailed();
 
 protected:
 	enum  LogLevel {Debug, Info, Warn, Err, Status} _log_level;

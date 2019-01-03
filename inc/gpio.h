@@ -4,7 +4,7 @@ protected:
   std::string gpionum;
 public:
   GPIO();
-  ~GPIO(){std::cout << "GPIO destructor" << std::endl;}
+  ~GPIO();
   void create_gpio(std::string x);
   int export_gpio();
   int unexport_gpio();

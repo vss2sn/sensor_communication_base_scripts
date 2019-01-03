@@ -3,6 +3,8 @@
 *******************************************************************************/
 #include "pwm.h"
 
+PWM::~PWM(){std::cout << "PWM destructor" << std::endl;}
+
 int PWM::export_pwm() {
   std::string export_str = "/sys/class/pwm/pwmchip" + std::to_string(pwm_chip_num) + "/export";
   std::ofstream exportpwm(export_str.c_str());

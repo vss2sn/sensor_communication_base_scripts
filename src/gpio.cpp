@@ -1,5 +1,7 @@
 #include<gpio.h>
 
+GPIO::~GPIO(){std::cout << "GPIO destructor" << std::endl;}
+
 void GPIO::create_gpio(std::string x) { this->gpionum = x; }
 
 int GPIO::export_gpio() {

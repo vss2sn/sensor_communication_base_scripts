@@ -10,7 +10,7 @@ class PWM{
 
 
 public:
-    ~PWM(){std::cout << "PWM destructor" << std::endl;}
+    ~PWM();
     int create_pwm();
     int export_pwm();
     int unexport_pwm();

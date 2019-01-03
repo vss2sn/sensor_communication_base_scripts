@@ -3,6 +3,8 @@
 *******************************************************************************/
 #include<serial.h>
 
+SERIAL::~SERIAL(){std::cout << "SERIAL destructor" << std::endl;}
+
 int SERIAL::set_interface_attribs(int fd, int speed, int parity) {
   struct termios tty;
 

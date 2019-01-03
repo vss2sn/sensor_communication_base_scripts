@@ -25,16 +25,22 @@ if(NOT WIN32)
 endif()
 
 set( CXX_FLAGS "-w" )
-set( CMAKE_CXX_FLAGS "${CXX_FLAGS}" )
+set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -pthread")
+
+find_package( Boost 1.55.0 COMPONENTS system )
+if(Boost_FOUND)
+    option( BOOST_FOUND "BOOST_FOUND" ON)
+    include_directories(${Boost_INCLUDE_DIRS})
+endif(Boost_FOUND)
 
 # If building each file with it's own output, set to ON
 # If buiding single file (main.cpp) to test any/all protocols, set to OFF
-option(BUILD_INDIVIDUAL "BUILD_INDIVIDUAL" ON)
+option( BUILD_INDIVIDUAL "BUILD_INDIVIDUAL" OFF)
 
 ## If ROS OpenCV conflicts with default OpenCV
 #option(ROS_OPENCV "ROS_OPENCV" ON)
 #if (ROS_OPENCV)
-#	find_package(OpenCV REQUIRED NO_MODULE PATHS /usr/local NO_DEFAULT_PATH) 
+#	find_package(OpenCV REQUIRED NO_MODULE PATHS /usr/local NO_DEFAULT_PATH)
 #	# should be optional, tells CMake to use config mode # look here # and don't look anywhere else
 #else (ROS_OPENCV)
 #	find_package( OpenCV REQUIRED )
@@ -50,10 +56,11 @@ file( GLOB LIB_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.h )
 
 message( "${Green}Individual files being built:${ColourReset}" )
 set(my_list ${LIB_SOURCES})
-if (BUILD_INDIVIDUAL)
+if ( BUILD_INDIVIDUAL )
 	#Removing main if building individual
-	list(REMOVE_ITEM LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-	add_definitions(-DBUILD_INDIVIDUAL)
+	list( REMOVE_ITEM LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
+	add_definitions(-DBUILD_INDIVIDUAL )
+  add_definitions(-DBOOST_FOUND )
 	foreach( testsourcefile ${LIB_SOURCES} )
 		string( REPLACE ".cpp" ".o" testname ${testsourcefile})
 		string( REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/src/" "" testname ${testname} )
@@ -63,9 +70,7 @@ if (BUILD_INDIVIDUAL)
 	endforeach( testsourcefile ${LIB_SOURCES} )
 else (BUILD_INDIVIDUAL)
 	message(main.cpp)
-	add_executable( main.o "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp" ${LIB_HEADERS} )
+	add_executable( main.o ${LIB_SOURCES} ${LIB_HEADERS} )
 	target_link_libraries( main.o "${OpenCV_LIBS}" "${Boost_LIBRARIES}")# opencv_cudaoptflow opencv_cudaimgproc)
-endif (BUILD_INDIVIDUAL)
+endif ( BUILD_INDIVIDUAL )
 message( "${Green}End of files being built ${ColourReset}" )
-
-
