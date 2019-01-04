@@ -13,6 +13,7 @@
 enum class Colour { BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET };
 
 void set_display_colour(Colour colour);
+std::string exec_system_cmd(const char* cmd)
 
 class LogDetailed{
 public:

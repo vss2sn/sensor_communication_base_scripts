@@ -46,7 +46,7 @@ int main(){
 	pid_t thread_tid = gettid();
 	std::vector<std::thread*> threads;
 
-	std::thread *thread= new std::thread(&invoke_threaded, &example_func, tag);
+	std::thread *thread= new std::thread(&invoke_thread, &example_func, tag);
 	threads.push_back(thread);
 
 	sig_wait();
