@@ -27,7 +27,9 @@ endif()
 set( CXX_FLAGS "-w" )
 set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -pthread")
 
-find_package( Boost 1.55.0 COMPONENTS system )
+find_package( Boost 1.66.0 COMPONENTS system )
+# Please note that this depends on having a CMake version installed that is compatible with the version of boost installed.
+
 if(Boost_FOUND)
     option( BOOST_FOUND "BOOST_FOUND" ON)
     include_directories(${Boost_INCLUDE_DIRS})

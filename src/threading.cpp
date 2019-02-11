@@ -1,5 +1,4 @@
 #include "main.h"
-#define gettid() syscall(SYS_gettid)
 #include "threading.h"
 
 bool run = true; //Using this variable to exit loops and close when keybpard interrupt called
