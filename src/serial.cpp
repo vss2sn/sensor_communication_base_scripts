@@ -1,7 +1,7 @@
 /*******************************************************************************
  SERIAL common functions
 *******************************************************************************/
-#include<serial.h>
+#include "serial.h"
 
 SERIAL::~SERIAL(){std::cout << "SERIAL destructor" << std::endl;}
 
@@ -102,4 +102,3 @@ int main(){
 	return 0;
 }
 #endif
-

@@ -1,14 +1,14 @@
 /*
-References: 
+References:
 https://www.kernel.org/doc/Documentation/i2c/dev-interfac
 */
 
-#include<i2c.h>
+#include "i2c.h"
 
 I2C::I2C(){
 	/*
 	If reading from another file / manually setting, set here
-	*/		
+	*/
 	fd = open(dev.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
 	if (fd < 0){
 		std::cout << "Error opening " << dev << ":" << strerror(errno) << std::endl;;
@@ -31,7 +31,7 @@ bool I2C::read_i2c(){
 		return false;
 	}
 	return true;
-} 
+}
 
 bool I2C::write_i2c(std::string tag){
 	length = tag.length();
@@ -48,7 +48,3 @@ int main(){
 	return 0;
 }
 #endif
-
-
-
-

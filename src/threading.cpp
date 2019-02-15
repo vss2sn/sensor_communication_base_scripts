@@ -1,4 +1,3 @@
-#include "main.h"
 #include "threading.h"
 
 bool run = true; //Using this variable to exit loops and close when keybpard interrupt called
