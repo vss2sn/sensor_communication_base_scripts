@@ -1,4 +1,4 @@
-project(sensor_communication)
+project(base_scripts)
 
 cmake_minimum_required(VERSION 3.5)
 
