@@ -1,54 +1,55 @@
+#include <string>
+#include <fstream>
+
 #include "communication/gpio.hpp"
 
-GPIO::~GPIO(){std::cout << "GPIO destructor" << std::endl;}
+Gpio::Gpio(const int gpionum)
+  : gpionum_(gpionum) {}
 
-void GPIO::create_gpio(std::string x) { this->gpionum = x; }
+void Gpio::setGpioNum(const int gpionum) {
+  gpionum_ = gpionum;
+}
 
-int GPIO::export_gpio() {
-  std::string export_str = "/sys/class/gpio/export";
-  std::ofstream exportgpio(export_str.c_str());
-  exportgpio << this->gpionum;
+void Gpio::exportGpio() {
+  constexpr char export_str[] = "/sys/class/gpio/export";
+  std::ofstream exportgpio(export_str);
+  exportgpio << gpionum_;
   exportgpio.close();
-  return 0;
 }
 
-int GPIO::unexport_gpio() {
-  std::string unexport_str = "/sys/class/gpio/unexport";
-  std::ofstream unexportgpio(unexport_str.c_str());
-  unexportgpio << this->gpionum;
+void Gpio::unexportGpio() {
+  constexpr char unexport_str[] = "/sys/class/gpio/unexport";
+  std::ofstream unexportgpio(unexport_str);
+  unexportgpio << gpionum_;
   unexportgpio.close();
-  return 0;
 }
 
-int GPIO::setdir_gpio(std::string dir) {
-  std::string setdir_str ="/sys/class/gpio/gpio" + this->gpionum + "/direction";
+void Gpio::setDirGpio(const std::string& dir) {
+  const std::string setdir_str ="/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/direction";
   std::ofstream setdirgpio(setdir_str.c_str());
   setdirgpio << dir;
   setdirgpio.close();
-  return 0;
 }
 
-int GPIO::setval_gpio(std::string val) {
-  std::string setval_str = "/sys/class/gpio/gpio" + this->gpionum + "/value";
+void Gpio::setValGpio(const int val) {
+  const std::string setval_str = "/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/value";
   std::ofstream setvalgpio(setval_str.c_str());
   setvalgpio << val;
   setvalgpio.close();
-  return 0;
 }
 
-int GPIO::getval_gpio(std::string &val) {
-  std::string getval_str = "/sys/class/gpio/gpio" + this->gpionum + "/value";
+int Gpio::getValGpio() {
+  int val;
+  const std::string getval_str = "/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/value";
   std::ifstream getvalgpio(getval_str.c_str());
   getvalgpio >> val;
-  if (val != "0")
-    val = "1";
-  else
-    val = "0";
   getvalgpio.close();
-  return 0;
+  return val;
 }
 
-std::string GPIO::get_gpionum() { return this->gpionum; }
+int Gpio::getGpioNum() {
+  return gpionum_;
+}
 
 #ifdef BUILD_INDIVIDUAL
 int main(){

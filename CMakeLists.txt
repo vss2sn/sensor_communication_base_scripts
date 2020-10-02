@@ -19,7 +19,7 @@ target_sources(communication_library
 
 set_target_properties(communication_library
   PROPERTIES
-    CXX_STANDARD_REQUIRED 11
+    CXX_STANDARD_REQUIRED 17
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
     CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Werror"

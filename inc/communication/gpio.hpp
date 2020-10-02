@@ -1,14 +1,15 @@
-class GPIO{
-protected:
-  std::string gpionum;
+#include <string>
+
+class Gpio {
 public:
-  GPIO();
-  ~GPIO();
-  void create_gpio(std::string x);
-  int export_gpio();
-  int unexport_gpio();
-  int setdir_gpio(std::string dir);
-  int setval_gpio(std::string val);
-  int getval_gpio(std::string &val);
-  std::string get_gpionum();
+  Gpio(const int gpionum);
+  void setGpioNum(const int gpionum);
+  void exportGpio();
+  void unexportGpio();
+  void setDirGpio(const std::string& dir);
+  void setValGpio(const int val);
+  int getValGpio();
+  int getGpioNum();
+private:
+  int gpionum_;
 };
