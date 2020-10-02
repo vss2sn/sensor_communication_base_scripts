@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 
-#include "communication/Serial.hpp"
+#include "communication/serial.hpp"
 
 int Serial::setInterfaceAttribs(int fd, int speed, int parity) {
   struct termios tty;
