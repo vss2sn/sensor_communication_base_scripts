@@ -1,7 +1,7 @@
 /*******************************************************************************
  SERIAL common functions
 *******************************************************************************/
-#include "serial.h"
+#include "communication/serial.hpp"
 
 SERIAL::~SERIAL(){std::cout << "SERIAL destructor" << std::endl;}
 

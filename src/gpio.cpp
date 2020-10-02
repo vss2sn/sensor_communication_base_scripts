@@ -1,4 +1,4 @@
-#include "gpio.h"
+#include "communication/gpio.hpp"
 
 GPIO::~GPIO(){std::cout << "GPIO destructor" << std::endl;}
 

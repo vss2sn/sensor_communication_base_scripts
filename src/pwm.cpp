@@ -1,7 +1,7 @@
 /*******************************************************************************
  PWM common functions
 *******************************************************************************/
-#include "pwm.h"
+#include "communication/pwm.hpp"
 
 PWM::~PWM(){std::cout << "PWM destructor" << std::endl;}
 

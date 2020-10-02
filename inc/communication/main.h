@@ -19,7 +19,3 @@
 #include <memory>
 #include <chrono>
 #include <sys/syscall.h>
-
-#ifdef BOOST_FOUND
-#include <boost/asio.hpp> //belongs to BOOST system component
-#endif

@@ -2,7 +2,7 @@
 Useful functions
 */
 
-#include "utils.h"
+#include "communication/utils.hpp"
 std::mutex display_mutex;
 
 // For Debugging
@@ -132,4 +132,3 @@ int main(){
 	LogStatus()<<	"White";
 }
 #endif
-

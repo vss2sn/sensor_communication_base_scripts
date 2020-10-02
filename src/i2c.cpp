@@ -3,7 +3,7 @@ References:
 https://www.kernel.org/doc/Documentation/i2c/dev-interfac
 */
 
-#include "i2c.h"
+#include "communication/i2c.hpp"
 
 I2C::I2C(){
 	/*
