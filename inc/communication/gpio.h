@@ -1,4 +1,3 @@
-#include "main.h"
 class GPIO{
 protected:
   std::string gpionum;

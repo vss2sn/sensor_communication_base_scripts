@@ -1,5 +1,3 @@
-#include"main.h"
-
 class SERIAL{
 protected:
   int fd;

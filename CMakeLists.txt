@@ -26,5 +26,7 @@ set_target_properties(communication_library
 )
 
 add_executable(communicate)
-target_sources(communicate ${CMAKE_CURRENT_SOURCE_DIR}/main/main.cpp)
+target_sources(communicate
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/main/main.cpp)
 target_link_libraries(communicate communication_library)

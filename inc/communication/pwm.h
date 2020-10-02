@@ -1,4 +1,3 @@
-#include "main.h"
 class PWM{
   int pwm_pin_num = 0;
   int pwm_chip_num = 0;
