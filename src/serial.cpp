@@ -1,11 +1,19 @@
 /*******************************************************************************
- SERIAL common functions
+ Serial common functions
 *******************************************************************************/
-#include "communication/serial.hpp"
+#include <cstring>
+#include <fstream>
+#include <fcntl.h> // for O_RDWR
+#include <iostream>
+#include <string>
+#include <string.h> // for strerror
+#include <termios.h>
+#include <unistd.h>
 
-SERIAL::~SERIAL(){std::cout << "SERIAL destructor" << std::endl;}
 
-int SERIAL::set_interface_attribs(int fd, int speed, int parity) {
+#include "communication/Serial.hpp"
+
+int Serial::setInterfaceAttribs(int fd, int speed, int parity) {
   struct termios tty;
 
   tcgetattr(fd, &tty);
@@ -31,7 +39,7 @@ int SERIAL::set_interface_attribs(int fd, int speed, int parity) {
   return 0;
 }
 
-void SERIAL::set_blocking(int fd, int should_block) {
+void Serial::setBlocking(int fd, int should_block) {
   struct termios tty;
   memset(&tty, 0, sizeof tty);
   if (tcgetattr(fd, &tty) != 0) {
@@ -47,7 +55,7 @@ void SERIAL::set_blocking(int fd, int should_block) {
   }
 }
 
-bool SERIAL::open_device() {
+bool Serial::openDevice() {
   fd = open(dev.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
   if (fd < 0) {
     std::cout << "error opening " << dev << ": " << strerror(errno) << std::endl;
@@ -55,16 +63,15 @@ bool SERIAL::open_device() {
   }
   std::cout << "Device opened as: " << fd << std::endl;
   usleep(500000);
-  set_interface_attribs(fd, (speed_t)B9600,
-                        0);
+  setInterfaceAttribs(fd, (speed_t)B9600, 0);
   return true;
 }
 
-int SERIAL::write_string_to_serial(std::string tag) {
+int Serial::writeString(const std::string& tag) {
   return write(fd, &tag[0], strlen(&tag[0]));
 }
 
-int SERIAL::read_with_timout() {
+int Serial::readWithTimout() {
   int n = 0;
   memset(&readbuf[0], 0, sizeof(readbuf));
   fd_set read_fds, write_fds, except_fds;
@@ -89,9 +96,9 @@ int SERIAL::read_with_timout() {
   return n;
 }
 
-std::string SERIAL::read_string_with_timout() {
+std::string Serial::readStringWithTimout() {
   int n = 0;
-  n = read_with_timout();
+  n = readWithTimout();
   std::string response = reinterpret_cast<const char *>(readbuf);
   memset(&readbuf[0], 0, sizeof(readbuf));
   return response;
