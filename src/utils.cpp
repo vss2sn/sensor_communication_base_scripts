@@ -1,8 +1,7 @@
-/*
-Useful functions
-*/
+#include <string>
 
 #include "communication/utils.hpp"
+
 std::mutex display_mutex;
 
 // For Debugging
@@ -15,6 +14,7 @@ std::mutex display_mutex;
 #define ANSI_COLOUR_CYAN "\x1b[1;36m"
 #define ANSI_COLOUR_WHITE "\x1b[1;37m"
 #define ANSI_COLOUR_RESET "\x1b[1;0m"
+
 LogDetailed::~LogDetailed()
 {
 		std::lock_guard<std::mutex> lock(display_mutex);

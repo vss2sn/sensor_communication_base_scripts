@@ -1,6 +1,5 @@
-/*
-Please make sure BUILD_INDIVIDUAL is set to "OFF" if building this file.
-*/
+#include <chrono>
+#include <thread>
 
 #include "communication/gpio.hpp"
 #include "communication/i2c.hpp"
@@ -9,11 +8,8 @@ Please make sure BUILD_INDIVIDUAL is set to "OFF" if building this file.
 #include "communication/utils.hpp"
 
 int main(){
-	int i=0;
 	while(true){
-		LogDebug() << i;
-		i+=1;
-		usleep(1000000);
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 	return 0;
 }

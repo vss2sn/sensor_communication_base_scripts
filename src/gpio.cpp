@@ -50,9 +50,3 @@ int Gpio::getValGpio() {
 int Gpio::getGpioNum() {
   return gpionum_;
 }
-
-#ifdef BUILD_INDIVIDUAL
-int main(){
-	return 0;
-}
-#endif

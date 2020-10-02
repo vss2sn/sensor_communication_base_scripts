@@ -1,6 +1,3 @@
-/*******************************************************************************
- Serial common functions
-*******************************************************************************/
 #include <cstring>
 #include <fstream>
 #include <fcntl.h> // for O_RDWR
@@ -103,9 +100,3 @@ std::string Serial::readStringWithTimout() {
   memset(&readbuf[0], 0, sizeof(readbuf));
   return response;
 }
-
-#ifdef BUILD_INDIVIDUAL
-int main(){
-	return 0;
-}
-#endif

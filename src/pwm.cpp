@@ -1,6 +1,3 @@
-/*******************************************************************************
- PWM common functions
-*******************************************************************************/
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -75,9 +72,3 @@ void PWM::setPolarityPwm(const std::string& polarity) {
 void PWM::setChipNum(const int chip_num) {
   chip_num_ = chip_num;
 }
-
-#ifdef BUILD_INDIVIDUAL
-int main(){
-	return 0;
-}
-#endif

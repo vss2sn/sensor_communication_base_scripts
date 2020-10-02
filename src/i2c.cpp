@@ -66,9 +66,3 @@ bool I2C::writeI2c(const std::string& tag){
 	}
 	return true;
 }
-
-#ifdef BUILD_INDIVIDUAL
-int main(){
-	return 0;
-}
-#endif
