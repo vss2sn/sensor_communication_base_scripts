@@ -1,30 +1,30 @@
 #include <fstream>
 #include <string>
 
-#include "communication/gpio.hpp"
+#include "communication/LegacyGpio.hpp"
 
-Gpio::Gpio(const int gpionum)
+LegacyGpio::LegacyGpio(const int gpionum)
   : gpionum_(gpionum) {}
 
-void Gpio::setGpioNum(const int gpionum) {
+void LegacyGpio::setGpioNum(const int gpionum) {
   gpionum_ = gpionum;
 }
 
-void Gpio::exportGpio() const {
+void LegacyGpio::exportGpio() const {
   constexpr char export_str[] = "/sys/class/gpio/export";
   std::ofstream exportgpio(export_str);
   exportgpio << gpionum_;
   exportgpio.close();
 }
 
-void Gpio::unexportGpio() const {
+void LegacyGpio::unexportGpio() const {
   constexpr char unexport_str[] = "/sys/class/gpio/unexport";
   std::ofstream unexportgpio(unexport_str);
   unexportgpio << gpionum_;
   unexportgpio.close();
 }
 
-void Gpio::setDirGpio(const std::string& dir) {
+void LegacyGpio::setDirGpio(const std::string& dir) {
   direction_ = dir;
   const std::string setdir_str ="/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/direction";
   std::ofstream setdirgpio(setdir_str.c_str());
@@ -32,7 +32,7 @@ void Gpio::setDirGpio(const std::string& dir) {
   setdirgpio.close();
 }
 
-void Gpio::setValGpio(const int val) {
+void LegacyGpio::setValGpio(const int val) {
   val_ = val;
   const std::string setval_str = "/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/value";
   std::ofstream setvalgpio(setval_str.c_str());
@@ -40,7 +40,7 @@ void Gpio::setValGpio(const int val) {
   setvalgpio.close();
 }
 
-int Gpio::readValGpio() const {
+int LegacyGpio::readValGpio() const {
   int val;
   const std::string getval_str = "/sys/class/gpio/gpio" + std::to_string(gpionum_) + "/value";
   std::ifstream getvalgpio(getval_str.c_str());
@@ -49,14 +49,14 @@ int Gpio::readValGpio() const {
   return val;
 }
 
-int Gpio::getValGpio() const {
+int LegacyGpio::getValGpio() const {
   return val_;
 }
 
-int Gpio::getGpioNum() const {
+int LegacyGpio::getGpioNum() const {
   return gpionum_;
 }
 
-std::string Gpio::getDirGpio() const {
+std::string LegacyGpio::getDirGpio() const {
   return direction_;
 }

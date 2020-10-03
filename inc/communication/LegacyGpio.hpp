@@ -1,8 +1,8 @@
 #include <string>
 
-class Gpio {
+class LegacyGpio {
 public:
-  Gpio(const int gpionum);
+  LegacyGpio(const int gpionum);
   void setGpioNum(const int gpionum);
   void exportGpio() const;
   void unexportGpio() const;

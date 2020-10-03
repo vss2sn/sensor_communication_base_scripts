@@ -1,7 +1,8 @@
 #include <chrono>
 #include <thread>
 
-#include "communication/gpio.hpp"
+#include "communication/LegacyGpio.hpp"
+#include "communication/SafeLegacyGpio.hpp"
 #include "communication/i2c.hpp"
 #include "communication/pwm.hpp"
 #include "communication/serial.hpp"
