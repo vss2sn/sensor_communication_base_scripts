@@ -9,8 +9,17 @@
 #include "communication/utils.hpp"
 
 int main(){
-	while(true){
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-	return 0;
+  PWM p(0);
+  p.exportPwm();
+  p.setPolarityPwm("normal");
+  p.setPeriodPwm(100000);
+  p.setDutyCyclePwm(200000);
+  p.enablePwm();
+
+	std::this_thread::sleep_for(std::chrono::seconds(100));
+
+  p.disablePwm();
+  p.unexportPwm();
+
+  return EXIT_SUCCESS;
 }

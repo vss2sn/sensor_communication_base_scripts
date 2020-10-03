@@ -14,7 +14,7 @@ public:
     void setPeriodPwm(const int period);
     void setDutyCyclePwm(const int duty_cycle);
     void setPolarityPwm(const std::string& tag = "normal");
-    void enablePwm(const std::string& polarity);
+    void enablePwm();
     void disablePwm();
     void setChipNum(const int chip_num);
 };
