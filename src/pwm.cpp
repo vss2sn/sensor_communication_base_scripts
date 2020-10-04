@@ -9,7 +9,7 @@ PWM::PWM(const int chip_num) : chip_num_(chip_num) {}
 void PWM::exportPwm() {
   const std::string export_str = "/sys/class/pwm/pwmchip" + std::to_string(chip_num_) + "/export";
   std::ofstream exportpwm(export_str.c_str());
-  exportpwm << 0;
+  exportpwm << "0";
   exportpwm.close();
 }
 
@@ -17,7 +17,7 @@ void PWM::unexportPwm() {
   const std::string unexport_str = "/sys/class/pwm/pwmchip" + std::to_string(chip_num_) +
 			     "/export";
   std::ofstream unexportpwm(unexport_str.c_str());
-  unexportpwm << 0;
+  unexportpwm << "0";
   unexportpwm.close();
 }
 
@@ -46,7 +46,7 @@ void PWM::enablePwm() {
                            "/pwm" + std::to_string(chip_num_) +
                            "/enable";
   std::ofstream enable_pwm(export_str.c_str());
-  enable_pwm << 1;
+  enable_pwm << "1";
   enable_pwm.close();
 }
 
@@ -55,7 +55,7 @@ void PWM::disablePwm() {
                            "/pwm" + std::to_string(chip_num_) +
                            "/enable";
   std::ofstream disable_pwm(export_str.c_str());
-  disable_pwm << 0;
+  disable_pwm << "0";
   disable_pwm.close();
 }
 
