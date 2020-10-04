@@ -29,6 +29,7 @@ target_sources(communication_library
     ${CMAKE_CURRENT_SOURCE_DIR}/src/LegacyGpio.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/SafeLegacyGpio.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/i2c.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SafeI2C.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/pwm.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/serial.cpp
 )
