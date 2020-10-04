@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 
-#include "communication/SafeLegacyGpio.hpp"
+#include "communication/safe_legacy_gpio.hpp"
 
 SafeLegacyGpio::SafeLegacyGpio(const int pin_num, const int val, const std::string& direction){
   std::lock_guard<std::recursive_mutex> lock(m_);

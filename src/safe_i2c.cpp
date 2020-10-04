@@ -7,7 +7,7 @@
 #include <sys/ioctl.h> // for ioctl
 #include <unistd.h> // for write
 
-#include "communication/SafeI2C.hpp"
+#include "communication/safe_i2c.hpp"
 
 bool SafeI2C::modified = true;
 

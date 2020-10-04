@@ -7,7 +7,6 @@
 #include <termios.h>
 #include <unistd.h>
 
-
 #include "communication/serial.hpp"
 
 int Serial::setInterfaceAttribs(int fd, int speed, int parity) {

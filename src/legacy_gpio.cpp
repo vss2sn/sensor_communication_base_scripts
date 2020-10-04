@@ -1,7 +1,7 @@
 #include <fstream>
 #include <string>
 
-#include "communication/LegacyGpio.hpp"
+#include "communication/legacy_gpio.hpp"
 
 LegacyGpio::LegacyGpio(const int gpionum)
   : gpionum_(gpionum) {}

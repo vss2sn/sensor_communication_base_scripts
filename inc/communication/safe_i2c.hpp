@@ -21,7 +21,6 @@ public:
   bool readI2c(char* buffer, const std::size_t length);
   bool writeI2c(char* buffer, const std::size_t length);
 
-
   bool isDeviceOpen();
   bool isSlaveCaptured();
 
